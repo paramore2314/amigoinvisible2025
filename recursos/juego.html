@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+            margin: 0;
+            color: #e62222;
+        }
+        canvas {
+            border: 4px solid #333;
+            box-shadow: 0 0 20px rgba(230, 34, 34, 0.5);
+            max-width: 90vw;
+            height: auto;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+
+
+
+<body style="background: #000; margin:0;">
+    <div class="game-screen-wrapper">
+        <h2 style="font-family: monospace; margin: 0;">Puntaje: <span id="score">0</span></h2>
+        
+        <canvas id="snakeGame" width="400" height="400"></canvas>
+
+        <div class="controles-grid">
+            <div></div>
+            <button class="btn-control up" onclick="cambiarDireccion('arriba')">▲</button>
+            <div></div>
+            <button class="btn-control left" onclick="cambiarDireccion('izquierda')">◀</button>
+            <div class="centro-vacio"></div>
+            <button class="btn-control right" onclick="cambiarDireccion('derecha')">▶</button>
+            <div></div>
+            <button class="btn-control down" onclick="cambiarDireccion('abajo')">▼</button>
+            <div></div>
+        </div>
+
+        <button class="boton-volver" onclick="window.location.href='../index.html'" 
+                style="padding: 10px 20px; font-size: 0.8rem;">
+        
+            VOLVER
+        </button>
+    </div>
+
+    <script src="script-juego.js"></script>
+
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-titulo">GAME OVER</h2>
+            <p id="modal-mensaje"></p>
+            <button onclick="reiniciarJuego()" class="btn-modal">CONTINUAR</button>
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

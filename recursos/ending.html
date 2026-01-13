@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ending</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="body-ending">
+
+    <audio id="ending">
+        <source src="ending.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="capa-petalos"></div>
+
+    <div class="tv-container">
+        <div class="tv-screen">
+            <img src="img/ending.webp" alt="Ending" class="img-final">
+            <div class="tv-noise"></div>
+            <div class="tv-overlay"></div>
+        </div>
+        <div class="tv-controls">
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+        
+        <button class="boton-volver" onclick="window.location.href='../index.html'">
+            <img src="img/icono.png" alt="inicio" class="icono-btn">
+            VOLVER AL INICIO
+        </button>
+
+    <script>
+        const sonido = document.getElementById('ending');
+        window.addEventListener('load', () => {
+            sonido.play().catch(() => console.log("Clic para sonar"));
+        });
+        document.body.addEventListener('click', () => {
+            if (sonido.paused) sonido.play();
+        }, { once: true });
+    </script>
+</body>
+</html>

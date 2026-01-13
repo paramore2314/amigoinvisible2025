@@ -1,0 +1,524 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000; /* Fondo negro para mejor contraste */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+    
+}
+
+/* Contenedor del Manga */
+.manga-container {
+    width: 100%;
+    max-width: 800px; /* Ancho máximo en monitores */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+.manga-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Optimización para evitar que se arrastren las imágenes en el celu*/
+    pointer-events: none; 
+}
+
+
+
+
+/* FONDO */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 1. LA IMAGEN*/
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                      url('img/fondo.webp');
+    
+    /* 2. OPTIMIZACIÓN PARA CELUS */
+    background-position: center; 
+    background-size:cover;      
+    background-repeat: no-repeat;
+    background-attachment: scroll; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.welcome-box {
+    display: flex;
+    text-align: center;
+    font-family: "Smythe", system-ui;
+    font-size: x-large;
+    font-weight: 400;
+    font-style: normal;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px; /* espacio uniforme de 7px entre el H1, el P y el Button */
+    padding: 40px;
+    color:#bdb7b7;
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    
+}
+
+
+
+.welcome-box button {
+   /* Estilos base */
+   background-color: transparent !important; 
+   color: #e62222 !important;
+   margin-top: 30px;
+   border: 2px solid #e62222 !important;
+   padding: 15px 35px;
+   font-size: 1.2rem;
+   font-weight: bold;
+   text-transform: uppercase;
+   border-radius: 4px;
+   
+   /* Pa que el celu procese mejor la animación */
+   display: inline-block;
+   -webkit-appearance: none;
+   appearance: none;
+   
+   /* Animación */
+   -webkit-animation: latido 2s infinite ease-in-out;
+   animation: latido 2s infinite ease-in-out;
+}
+
+/* Animación simplificada */
+@keyframes latido {
+   0% { transform: scale(1); box-shadow: 0 0 0px rgba(230, 34, 34, 0); }
+   50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(230, 34, 34, 0.9); }
+   100% { transform: scale(1); box-shadow: 0 0 0px rgba(230, 34, 34, 0); }
+}
+
+/* Copia pa viejos Android */
+@-webkit-keyframes latido {
+   0% { -webkit-transform: scale(1); box-shadow: 0 0 0px rgba(230, 34, 34, 0); }
+   50% { -webkit-transform: scale(1.05); box-shadow: 0 0 25px rgba(230, 34, 34, 0.9); }
+   100% { -webkit-transform: scale(1); box-shadow: 0 0 0px rgba(230, 34, 34, 0); }
+}
+
+
+
+
+
+
+
+
+/* Botón de Silencio Flotante */
+#mute-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(5px); /* Efecto cristal */
+    z-index: 999;
+}
+
+
+/*BOTON DEL FINAL*/
+.boton-revelar {
+    display: block;
+    margin: 40px auto;
+    padding: 20px 40px;
+    background-color: transparent;
+    color: #e62222;
+    border: 2px solid #e62222;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+    clear: both; /* Evita que salte de la nada entre elementos flotantes */
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Aparece suavemente */
+    
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+.boton-revelar:hover {
+    background-color: #e62222;
+    color: white;
+    box-shadow: 0 0 15px #e62222;
+}
+
+/* Configuración específica para la página final */
+.body-ending {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    margin: 0;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.contenedor-final {
+    display: flex;
+    flex-direction: column; /* Alinea los hijos (imagen y botón) hacia abajo */
+    align-items: center;
+    gap: 30px; /* Espacio entre la imagen y el botón */
+    max-width: 90%;
+}
+
+.img-final {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 30px rgba(59, 165, 236, 0.6);
+}
+
+/* Estilo del botón volver */
+.boton-volver {
+    
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10%;
+    background-color: #E50914; 
+    color: #fff;
+    z-index: 10000;
+    
+   
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    
+    
+    padding: 12px 35px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    /* Optimización pa celus */
+    display: inline-block;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s, transform 0.1s ease;
+    
+    /* Sombra suave para dar profundidad */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto para Computadora */
+.boton-volver:hover {
+    background-color: #f6121d;
+}
+
+/* EFECTO EN EL CELU*/
+.btn-volver:active {
+    transform: scale(0.95); /* El botón se encoge un poco al presionarlo */
+    background-color: #b9090b;
+}
+
+
+/* Marco del televisor */
+.tv-container {
+    width: 95%;
+    max-width: 600px;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 35px;
+    border: 5px solid #333;
+    box-shadow: 0 0 50px rgba(230, 34, 34, 0.4);
+    position: relative;
+    margin: 20px auto;
+}
+
+
+
+/* Contenedor de la pantalla */
+.tv-screen {
+    position: relative;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.img-final {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.9) contrast(1.2);
+}
+
+/* El efecto de RUIDO / INTERFERENCIA */
+.tv-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.15; /* Qué tanto se nota el ruido */
+    overflow: hidden;
+}
+
+
+.tv-noise::before {
+    content: "";
+    position: absolute;
+    /* capa mas grande que el contenedor */
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    
+    /* LLAMADA AL ARCHIVO LOCAL */
+    background-image: url('img/estatica.png'); 
+    
+    /* Animación que mueve la imagen aleatoriamente */
+    animation: estatica-local 0.2s steps(5) infinite;
+}
+
+/* Animación que mueve la imagen de ruido en diferentes posiciones muy rápido */
+@keyframes estatica-local {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-5%, -5%); }
+    40% { transform: translate(-10%, 5%); }
+    60% { transform: translate(5%, -10%); }
+    80% { transform: translate(-5%, 10%); }
+    100% { transform: translate(10%, 5%); }
+}
+
+
+/* Animación de la luz de encendido */
+.dot:first-child {
+    background: #e62222;
+    box-shadow: 0 0 5px #e62222;
+    animation: parpadeo 1.5s infinite;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+
+/*PETALOS*/
+
+.capa-petalos {
+    position: fixed; /* Esto lo deja por encima de todo el scroll */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Ancho total de la pantalla */
+    height: 100vh; /* Alto total de la pantalla */
+    
+    background-image: url('img/petalos.gif');
+    background-size: 500px auto; 
+    background-position: center;
+    background-repeat: repeat;
+    
+    /* Orden de la capa */
+    z-index: 9999 !important; 
+    pointer-events: none; 
+    display: block !important; 
+}
+
+/*PA QUE APAREZCA LA MANITO DEL CURSOR EN PC*/
+button, .boton-revelar, .boton-volver, .welcome-box button {
+    cursor: pointer; 
+}
+
+
+/*VIBORITA*/
+
+/* Contenedor principal */
+.game-screen-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    width: 100%;
+    overflow: hidden; /* Evita que aparezca el scroll */
+}
+
+/* Cuadro del juego */
+#snakeGame {
+    max-width: 85vw; /* Máximo 85% del ancho */
+    max-height: 40vh; /* Máximo 40% del alto para dejar espacio a los botones */
+    width: auto;
+    height: auto;
+    border: 3px solid #e62222;
+}
+
+/* El Grid de controles */
+.controles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 80px); /* Tamaño fijo para las 3 columnas */
+    grid-template-rows: repeat(3, 80px);
+    gap: 10px;
+    
+    /* PARA PC */
+    margin: 20px auto; 
+    width: fit-content; /* El contenedor mide exactamente lo que miden los botones */
+    
+    justify-content: center;
+    align-content: center;
+}
+
+.btn-control {
+    width: 75px;  /* Reducido de 100px a 75px */
+    height: 75px; /* Reducido de 100px a 75px */
+    background: rgba(230, 34, 34, 0.2);
+    border: 2px solid #e62222;
+    color: white;
+    font-size: 1.8rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+}
+
+/* Para pantallas muy chicas  */
+@media (max-height: 670px) {
+    .controles-grid {
+        grid-template-columns: repeat(3, 65px);
+        grid-template-rows: repeat(3, 65px);
+        gap: 5px;
+    }
+    .btn-control {
+        width: 65px;
+        height: 65px;
+        font-size: 1.5rem;
+    }
+    #snakeGame {
+        max-height: 35vh;
+    }
+}
+
+.boton-volver {
+    display: block;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: #E50914;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+
+.icono-btn {
+    width: 20px;           /* Ajusta el tamaño de la imagen*/
+    height: auto;
+    display: inline-block;
+
+}
+
+.boton-volver:hover .icono-btn {
+    transform: scale(1.2); /* La imagen crece un poquito al pasar el mouse */
+    transition: 0.2s;
+}
+
+
+/*------------------------------------*/
+/* MENSAJE AL PERDER EL JUEGO*/
+/* Fondo oscurecido detrás del mensaje */
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* La caja del mensaje */
+.modal-content {
+    background: #111;
+    padding: 30px;
+    border: 2px solid #e62222;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(230, 34, 34, 0.5);
+    max-width: 80%;
+}
+
+.modal-titulo {
+    color: #e62222;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 15px;
+}
+
+#modal-mensaje {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.btn-modal {
+    background: #e62222;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Contenedor flexible para imagen + texto */
+.mensaje-flex {
+    display: flex;
+    align-items: center; /* Centra verticalmente la imagen con el texto */
+    justify-content: center; /* Centra el bloque en el modal */
+    gap: 15px; /* Espacio entre la imagen y el texto */
+    text-align: left; /* Alinea el texto a la izquierda para que se vea bien al lado de la imagen */
+}
+
+/* Estilo de la imagen dentro del mensaje */
+.img-mensaje {
+    width: 60px; /* Ajusta el tamaño según tu PNG */
+    height: auto;
+    filter: drop-shadow(0 0 5px #e62222); /* Opcional: le da un brillo rojo */
+}
+
+/* Ajuste para móviles (si la pantalla es muy angosta) */
+@media (max-width: 400px) {
+    .mensaje-flex {
+        flex-direction: column; /* Pone la imagen arriba del texto en celus muy chicos */
+        text-align: center;
+    }
+}
